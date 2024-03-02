@@ -17,6 +17,7 @@ main {
     grid-template-columns: auto;
     margin-left: 5rem;
     padding: 2rem;
+    margin-bottom: 10rem;
     row-gap: 2rem;
     .chatCard {
       width: 15rem;
@@ -140,5 +141,33 @@ main {
       color: #fff;
       letter-spacing: 1.5px;
     }
+  }
+}
+
+
+@media (max-width: 480px) {
+  header {
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+  main {
+    form {
+      input {
+        font-size: 1rem;
+      }
+    }
+  }
+  main.start-message {
+    h2 {
+      font-size: 1rem;
+    }
+  }
+  h2 {
+    text-align: center;
+  }
+  button {
+    margin-left: -8rem;
+    margin-top: -.2rem;
   }
 }

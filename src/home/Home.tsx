@@ -6,9 +6,7 @@ const Home = () => {
   const getInfFromLocalge = JSON.parse(localStorage.getItem("fullName")!);
   const [inputValue, setInputvalue] = useState("");
   const [chatData, setChatData] = useState([]);
-
-  const date = new Date();
-  const showTime = date.getHours() + ":" + date.getMinutes();
+  const [showTime, setShowTime] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -24,6 +22,8 @@ const Home = () => {
         fetchChatApi();
       } catch (err) {
         console.log("Error sending message:", err);
+        fetchChatApi();
+        setInputvalue("");
       }
     } else {
       alert("You have to write something!");
@@ -42,7 +42,20 @@ const Home = () => {
     }
   };
 
+  const date = new Date();
   useEffect(() => {
+    if (date.getMinutes().toString().length > 0) {
+      setShowTime(
+        date.getHours().toString() + ":" + date.getMinutes().toString()
+      );
+    } else {
+      setShowTime(
+        date.getHours().toString() + ":" + (0 + date.getMinutes().toString())
+      );
+    }
+  }, [date]);
+  useEffect(() => {
+    // window.scrollTo({ top: 1000, behavior: "smooth" });
     fetchChatApi();
   }, []);
 
@@ -52,7 +65,7 @@ const Home = () => {
   //   }
   // });
 
-  console.log(chatData);
+  // console.log(chatData);
 
   return (
     <div>
